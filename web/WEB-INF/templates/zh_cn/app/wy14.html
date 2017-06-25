@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="奢侈会">
+    <meta name="Description" content="奢侈会">
+    <!-- 上述5个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>奢侈会</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/ie9/html5shiv.min.js"></script>
+    <script type="text/javascript" src="js/ie9/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 字体 -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- 轮播 -->
+    <link rel="stylesheet" type="text/css" href="css/flexslider.css" />
+
+    <!-- 样式 -->
+    <link href="css/mystyle.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!--头部-->
+<div class="ny-top1 ny-top14">
+    <div class="ny-top-left ny-top-left4"><A href=""><img src="images/ny-top-left.png" class="img-responsive"></A>  </div>
+
+    <div class="ny-top-right4">
+        <ul class="ny-top-right4-ul">
+            <li><a href=""><img src="images/ny-top-right4-li1.png" class="img-responsive"> </a> </li>
+            <li><a href=""><img src="images/ny-top-right4-li2.png" class="img-responsive"> </a> </li>
+            <li><a href=""><img src="images/ny-top-right4-li3.png" class="img-responsive"> </a> </li>
+            <div style="clear: both;"></div>
+        </ul>
+    </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+<!--内容1-->
+<div class="wy14-div1">
+    <div class="flexslider">
+        <ul class="slides">
+            <li><img src="images/wy14-img1.png" /></li>
+            <li><img src="images/wy14-img1.png" /></li>
+            <li><img src="images/wy14-img1.png" /></li>
+        </ul>
+    </div>
+    <div class="wy14-div2">
+        <h2 class="wy14-h2-1">PRADA 普拉达 </h2>
+        <h2 class="wy14-h2-2">男款深蓝色牛皮公文包</h2>
+        <h2 class="wy14-h2-3">¥ 14140.00<span>专柜价：¥ 16968.00</span></h2>
+        <h4>货号: 2000010008391</h4>
+    </div>
+</div>
+
+
+<!--内容2-->
+<div class="wy14-div1 wy14-div3">
+    <h3>店铺优惠</h3>
+    <div class="wy14-div4">
+        <h5>1.满999元，享包邮，送5元优惠券</h5>
+        <h5>2.送30会员积分</h5>
+        <h5>1.满999元，享包邮，送5元优惠券</h5>
+    </div>
+</div>
+
+
+
+<!--内容3-->
+<div class="wy14-div1 wy14-div5">
+    <div class="wy14-div6">
+        <div class="wy14-div6-left"><img src="images/wy14-div6-left.png" class="img-responsive"></div>
+        <div class="wy14-div6-right">
+            <h4 class="wy14-div6-h41">FURLA/芙拉 女士闪亮金属扣牛皮手提包 VE</h4>
+            <h4 class="wy14-div6-h42">¥ 2,892</h4>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="wy14-div7">
+        <h4>色系</h4>
+        <ul>
+            <li><a href=""><h4>黑色</h4></a> </li>
+            <li class="wy14-div7-li wy14-div7-li-on"><a href=""><h4>古董白色</h4></a> </li>
+            <li><a href=""><h4>酒棕色</h4></a> </li>
+            <div style="clear: both;"></div>
+        </ul>
+    </div>
+    <div class="wy14-div7 wy14-div8">
+        <h4>数量</h4>
+        <div class="p_number">
+            <div class="f_l add_chose">
+                <a class="reduce" onClick="setAmount.reduce('#qty_item_1')" href="javascript:void(0)">-</a>
+                <input type="text" name="qty_item_1" value="1" id="qty_item_1" onKeyUp="setAmount.modify('#qty_item_1')" class="text" />
+                <a class="add" onClick="setAmount.add('#qty_item_1')" href="javascript:void(0)">+</a>
+                <div style="clear: both;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--底部-->
+<div class="db-gw1"></div>
+<div class="db-gw">
+    <ul>
+        <li><a href="">加入购物车</a></li>
+        <li class="db-gw-li1"><a href="">立即购买</a></li>
+        <div style="clear: both;"></div>
+    </ul>
+</div>
+
+
+
+<!--js基本样式-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+
+<!--轮播图-->
+<script type="text/javascript" src="js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".flexslider").flexslider({
+            slideshowSpeed: 3000, //展示时间间隔ms
+            animationSpeed: 100, //滚动时间ms
+            touch: true //是否支持触屏滑动
+        });
+    });
+</script>
+
+
+
+
+<!--商品加减-->
+<script type="text/javascript" src="js/payfor.js"></script>
+
+
+
+
+</body>
+</html>

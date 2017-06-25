@@ -1,0 +1,72 @@
+<!--内容4-->
+#foreach($floor in $floors)
+	#foreach($info in $floor.childs)
+	#set($goods_count=$gf_tools.generic_goods("$!info.gf_gc_goods").size())
+<div class="nr3">
+    <div class="bt">
+        <div class="bt-left">
+            <div class="bt-left1 bt-left3"><h3>$!{floor.gf_name}</h3></div>
+        </div>
+        <div class="bt-left bt-right">
+            <div class="bt-right1"><A href="$!webPath/app/indexFloorMores.htm?floor_id=$!{floor.id}"><img src="$!webPath/resources/style/app/images/wy22-div2-right.png" class="img-responsive"> </A></div>
+            <div style="clear: both;"></div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    <div class="nr3-div1">
+    #set($i=0)
+    #foreach($goods in $gf_tools.generic_goods("$!info.gf_gc_goods"))
+    #set($i=$i+1)
+    #if($i<5) 
+    #if($!goods)
+	     #if($!goods.goods_main_photo)               
+	     	#set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+	     #else
+	     	#set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+	     #end
+     
+		 #set($goods_url="$!webPath/app/goods_$!{goods.id}.htm")
+	     #if($!config.second_domain_open)
+	        #set($goods_url="http://$!{goods.goods_store.store_second_domain}.$!{domainPath}/app/goods_$!{goods.id}.htm")
+	     #end 
+     <!--  start loop display goods -->
+    	#if(${velocityCount}==1)
+	        <div class="nr3-div1-top">
+	            <A href="$!goods_url">
+	                <img src="$!img" class="img-responsive">
+	                <div class="nr3-div2">
+	                  <span class="tit"><h3>$!CommUtil.substring("$!goods.goods_name",20)</h3></span><span class="yuan"><h5>￥$!{goods.goods_current_price}</h5></span>
+	                </div>
+	            </A>
+	        </div>
+        #else
+	        #if(${velocityCount}==2)
+	        <div class="nr3-div1-bottom">
+	            <ul>
+	        #end
+                <li #if(${velocityCount}>2) class="nr3-li1" #end>
+                    <div class="nr3-div1-top">
+                        <A href="$!goods_url">
+                            <img src="$!img" class="img-responsive">
+                            <div class="nr3-div2">
+                            	<span class="tit">
+                                <h5>$!CommUtil.substring("$!goods.goods_name",20)</h5>
+                                </span>
+                                <span class="yuan"><h5>￥$!{goods.goods_current_price}</h5></span>
+                            </div>
+                        </A>
+                    </div>
+                </li>
+	         #if(${velocityCount}==${goods_count})
+	                <div style="clear: both;"></div>
+	            </ul>
+	        </div>
+	         #end
+         #end
+        #end
+      #end
+      #end 
+      #end
+    </div>
+</div>
+#end

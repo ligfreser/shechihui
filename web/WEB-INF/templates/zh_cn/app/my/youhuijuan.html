@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="奢侈会">
+    <meta name="Description" content="奢侈会">
+    <!-- 上述5个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>奢侈会</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/ie9/html5shiv.min.js"></script>
+    <script type="text/javascript" src="js/ie9/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 字体 -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!-- 样式 -->
+    <link href="css/mystyle.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!--头部-->
+<div class="ny-top1">
+    <div class="ny-top-left"><A href=""><img src="images/ny-top-left.png" class="img-responsive"></A>  </div>
+    <div class="ny-top-cen"><h2>优惠券&nbsp;<img src="images/jian.jpg"></h2></div>
+    <div class="ny-top-right"><A href=""><img src="images/ny-top-right.png" class="img-responsive"></A>  </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+<!--内容1-->
+<div class="huo_fen">
+    <ul class="jia_df">
+        <li class="on">待评价（1）</li>
+        <li>已评价</li>
+        <div style="clear:both;"></div>
+    </ul>
+    <div class="ping_jia">
+    	<ul class="fk_top2 dai_ping">
+            
+             <li>
+                <div class="ji_juo">
+                	<input name="" type="text" class="an_niuy" value="请输入激活码" onBlur="this.value==''?this.value='请输入激活码':null;" onFocus="this.value==this.defaultValue?this.value='':null;" >
+                    <input name="" type="button" class="you_hui" value="激活优惠券">
+                    <div style="clear:both;"></div>
+                </div>
+                <div class="cou_qiao">
+                	<div class="zuan_chu"><img src="images/youhui.jpg" /></div>
+                </div>
+             </li>
+            
+            
+        </ul>
+
+    </div>
+    <div class="ping_jia" style="display:none;">
+    	<ul class="fk_top2 dai_ping">
+            
+             <li>
+                
+             </li>
+            
+            
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+<!--底部-->
+
+
+
+
+
+<!--js基本样式-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script>
+$('.jia_df li').mouseover(function(){
+var el_index=$(this).parent().find('li').index(this);
+$(this).parent().find('li').removeClass('on');
+$(this).addClass('on');
+$(this).parent().parent().parent().find(".ping_jia").hide();
+$(this).parent().parent().parent().find(".ping_jia").eq(el_index).show();
+
+});
+</script>
+
+
+
+</body>
+</html>

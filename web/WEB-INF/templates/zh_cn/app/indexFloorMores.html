@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="奢侈会">
+    <meta name="Description" content="奢侈会">
+    <!-- 上述5个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>奢侈会</title>
+
+    <!-- Bootstrap -->
+    <link href="$!webPath/resources/style/app/comm/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="js/ie9/html5shiv.min.js"></script>
+    <script type="text/javascript" src="js/ie9/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 字体 -->
+    <link rel="stylesheet" href="$!webPath/resources/style/app/comm/font-awesome.min.css">
+
+    <!-- 样式 -->
+    <link href="$!webPath/resources/style/app/comm/mystyle.css" rel="stylesheet">
+
+</head>
+<body>
+#foreach($floor in $floors)
+<!--头部-->
+<div class="ny-top1">
+    <div class="ny-top-left"><A href="javascript:history.go(-1);"><img src="$!webPath/resources/style/app/images/ny-top-left.png" class="img-responsive"></A>  </div>
+    <input type="hidden" name="floor_id" value="$!{floor.id}">
+    <div class="ny-top-cen"><h2>$!{floor.gf_name}</h2></div>
+    <div class="ny-top-right"><A href=""><img src="$!webPath/resources/style/app/images/ny-top-right.png" class="img-responsive"></A>  </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+<!--内容1-->
+<div class=" wy11-div1">
+    <ul id="accordion" class="accordion">
+        <li>
+            <div class="link">分类</div>
+            <ul class="submenu">
+               #foreach($gc in $gf_tools.generic_gf_gc("$!floor.gf_gc_list"))
+				<h4>$!gc.className</h4>
+                #foreach($c_gc in $gc.childs) 
+                #if(${velocityCount}%3==1)
+                	<li class="wy11-li-left">
+                #end
+                #if(${velocityCount}%3==2)
+                	<li class="wy11-li-cen">
+                #end
+                #if(${velocityCount}%3==0)
+                	<li class="wy11-li-right">
+                #end
+                <a href="$!webPath/app/store_goods_list_$!{c_gc.id}.htm">$!c_gc.className</a></li>
+                #end
+               #end
+                <div style="clear: both;"></div>
+            </ul>
+        </li>
+        <li>
+            <div class="link">品牌</div>
+            <ul class="submenu submenu1">
+        	#foreach($brand in $gf_tools.generic_brand("$!floor.gf_brand_list"))
+                <li><a href="$!webPath/app/brand_goods_$!{brand.id}.htm">$!{brand.name}</a></li>
+            #end
+                <div style="clear: both;"></div>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+
+<!--内容2-->
+
+<div class=" wy01-div2">
+    <ul class="wy01-ul2">
+    
+        #foreach($info in $floor.childs)
+        
+           #foreach($goods in $gf_tools.generic_goods("$!info.gf_gc_goods"))
+            #if($!goods)
+             #if($!goods.goods_main_photo)               
+             #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+             #else
+             #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+             #end
+             #if(${velocityCount}%2==1)
+                <li>
+             #else
+        		<li class="wy01-ul2-li1">
+             #end
+             
+             #set($goods_url="$!webPath/app/goods_$!{goods.id}.htm")
+             #if($!config.second_domain_open)
+                #set($goods_url="http://$!{goods.goods_store.store_second_domain}.$!{domainPath}/goods_$!{goods.id}.htm")
+             #end 
+             
+            <A href="$!goods_url">
+                <div class="wy01-div2-img"><img src="$!img" class="img-responsive"> </div>
+                <h4>$!CommUtil.substring("$!goods.goods_name",20)</h4>
+                <h5>¥$!{goods.goods_current_price}<span>¥$!{goods.goods_price}</span></h5>
+            </A>
+        		</li>
+           #end
+          #end
+        #end
+    </ul>
+</div>
+
+#end
+<!--底部-->
+
+
+
+
+
+<!--js基本样式-->
+<script type="text/javascript" src="$!webPath/resources/js/app/jquery.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/app/bootstrap.min.js"></script>
+
+
+
+
+<!--CSS3垂直手风琴折叠菜单-->
+<script>
+    $(function() {
+        var Accordion = function(el, multiple) {
+            this.el = el || {};
+            this.multiple = multiple || false;
+
+            // Variables privadas
+            var links = this.el.find('.link');
+            // Evento
+            links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+        }
+        Accordion.prototype.dropdown = function(e) {
+            var $el = e.data.el;
+            $this = $(this),
+                    $next = $this.next();
+
+            $next.slideToggle();
+            $this.parent().toggleClass('open');
+
+            if (!e.data.multiple) {
+                $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+            };
+        }
+        var accordion = new Accordion($('#accordion'), false);
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="catalina">
+    <CLASSES>
+      <root url="jar://D:/Program Files/apache-tomcat-8.0.44/lib/catalina.jar!/" />
+      <root url="jar://D:/Program Files/apache-tomcat-8.0.44/lib/servlet-api.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

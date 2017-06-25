@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="奢侈会">
+    <meta name="Description" content="奢侈会">
+    <!-- 上述5个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>奢侈会</title>
+
+    <!-- Bootstrap -->
+    <link href="$!webPath/resources/style/app/comm/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="$!webPath/resources/js/app/ie9/html5shiv.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/app/ie9/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 字体 -->
+    <link rel="stylesheet" href="$!webPath/resources/style/app/comm/font-awesome.min.css">
+
+    <!-- 样式 -->
+    <link href="$!webPath/resources/style/app/comm/mystyle.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!--头部-->
+<div class="ny-top1 wy04-top1">
+    <div class="ny-top-left"><A href="javascript:history.go(-1);"><img src="$!webPath/resources/style/app/images/ny-top-left.png" class="img-responsive"></A>  </div>
+    <div class="ny-top-cen"><h2>推荐</h2></div>
+    <div class="ny-top-right">&nbsp; </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+<!--banter-->
+<div class=" wy05-div1"><a href=""><img src="$!webPath/resources/style/app/images/wy05-img1.png" class="img-responsive"> </a></div>
+
+
+<!--内容1-->
+<div class=" wy01-div2">
+    <ul class="wy01-ul2">
+         #foreach($!store_reommend_good in $store_reommend_goods)
+		     #if($!store_reommend_good.goods_main_photo)
+		     #set($img="$!imageWebServer/$!{store_reommend_good.goods_main_photo.path}/$!{store_reommend_good.goods_main_photo.name}_small.$!{store_reommend_good.goods_main_photo.ext}")
+		     #else
+		     #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+		     #end
+		     #set($goods_url="$!webPath/app/goods_$!{store_reommend_good.id}.htm")
+		     #if($velocityCount%2==0)
+		<li class="wy01-ul2-li1">
+	         #else
+		<li>
+	         #end
+            <A href="$!goods_url">
+                <div class="wy01-div2-img"><img src="$!img" class="img-responsive"></div>
+                <h4>$!CommUtil.substring("$!store_reommend_good.goods_name",20)</h4>
+                <h5>¥$!{store_reommend_good.goods_current_price}<span>￥$!{store_reommend_good.goods_price}</span></h5>
+            </A>
+        </li>
+        #end
+    </ul>
+</div>
+
+
+<!--底部-->
+
+
+
+
+
+<!--js基本样式-->
+<script type="text/javascript" src="$!webPath/resources/js/app/jquery.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/app/bootstrap.min.js"></script>
+
+
+
+
+</body>
+</html>

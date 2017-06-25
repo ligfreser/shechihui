@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="奢侈会">
+    <meta name="Description" content="奢侈会">
+    <!-- 上述5个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>奢侈会</title>
+
+    <!-- Bootstrap -->
+    <link href="$!webPath/resources/style/app/comm/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="$!webPath/resources/js/app/ie9/html5shiv.min.js"></script>
+    <script type="text/javascript" src="$!webPath/resources/js/app/ie9/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- 字体 -->
+    <link rel="stylesheet" href="$!webPath/resources/style/app/comm/font-awesome.min.css">
+	<link href="$!webPath/resources/style/app/comm/flexslider.css" rel="stylesheet">
+    <!-- 样式 -->
+    <link href="$!webPath/resources/style/app/comm/mystyle.css" rel="stylesheet">
+
+</head>
+<body>
+
+<!--头部-->
+<div class="ny-top1 ny-top2">
+    <div class="ny-top-left2"><A href="javascript:history.go(-1);"><img src="$!webPath/resources/style/app/images/ny-top-left1.png" class="img-responsive"></A>  </div>
+    <div class="ny-top-cen2">
+        <div class="ny-top-cen2-div1">
+            <form name="searchform" id="search-form">
+                <div>
+                    <input type="text" name="txtInput">
+                </div>
+            </form>
+            <div class="ny-top-cen2-div2"> <A href=""><img src="$!webPath/resources/style/app/images/sys.png" class="img-responsive"> </A></div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="ny-top-right2"><A href=""><img src="$!webPath/resources/style/app/images/ny-top-right2.png" class="img-responsive"></A>  </div>
+    <div style="clear: both;"></div>
+</div>
+
+
+<!--内容1-->
+<div class="wy22-nr1">
+    <div class="flexslider qu_bian">
+        <ul class="slides">
+            <li><img src="$!webPath/resources/style/app/images/wy22-img1.png" /></li>
+            <li><img src="$!webPath/resources/style/app/images/wy22-img1.png" /></li>
+            <li><img src="$!webPath/resources/style/app/images/wy22-img1.png" /></li>
+        </ul>
+    </div>
+    <!--开始依次循环显示顶层分类以及各个分类对应的所有的品牌信息和推荐商品信息（只显示3个）-->
+    #set($index=0)
+	#foreach($gc_info in $gc_infos)
+		<!-- 判断下标挪移三位开始 -->
+		#set($index=$index+1)
+		#if ($index % 3 == 1 ) <!-- 显示顶层分类部分 -->
+    <!----包包---->
+    <div class="wy22-nr2">
+        <div class="wy22-div2">
+            <div class="wy22-div2-left">
+                <h3>$!gc_info.className</h3>
+            </div>
+            <div class="wy22-div2-left wy22-div2-right">
+                <div class="wy22-div2-right1"><A href=""><img src="$!webPath/resources/style/app/images/wy22-div2-right.png" class="img-responsive"> </A></div>
+                <div style="clear: both;"></div>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+        #end
+		#if ($index % 3 == 2 ) <!-- 显示分类对应的品牌部分 -->
+        <div class="wy22-div3">
+            <div class="wy22-div3-1">
+                <ul>
+					#foreach($gb in $gc_info)
+					#if(${velocityCount}%3==2) 
+						<li class="wy22-div3-1-li">
+					#else
+						<li>
+					#end
+                    <a href="$!webPath/app/brand_goods_$!{gb.id}.htm"><img src="$!webPath/$!gb.brandLogo.path/$!gb.brandLogo.name" class="img-responsive"> </a> </li>
+                    #end
+                    <div style="clear: both;"></div>
+                </ul>
+            </div>
+         #end
+		 #if ($index % 3 == 0 ) <!-- 显示分类对应的商品部分 -->
+			#foreach($goods in $gc_info)
+				
+	            #if($!goods.goods_main_photo)               
+	            #set($img="$!imageWebServer/$!{goods.goods_main_photo.path}/$!{goods.goods_main_photo.name}_small.$!{goods.goods_main_photo.ext}")
+	            #else
+	            #set($img="$!imageWebServer/$!{config.goodsImage.path}/$!{config.goodsImage.name}")
+	            #end
+	            #set($goods_url="$!webPath/app/goods_$!{goods.id}.htm")
+	            #if($!config.second_domain_open)
+	               #set($goods_url="http://$!{goods.goods_store.store_second_domain}.$!{domainPath}/goods_$!{goods.id}.htm")
+	            #end 
+	            
+				#if(${velocityCount}<4)
+					#if(${velocityCount}%3==1) 
+            <div class="wy22-div3-2">
+                <div class="wy22-div3-2-top">
+                    <a href="$!goods_url">
+                        <img src="$!img" class="img-responsive">
+                        <h6>$!CommUtil.substring("$!goods.goods_name",20)<span>￥ $!{goods.goods_current_price}</span></h6>
+                    </a>
+                </div>
+            		#end
+					#if(${velocityCount}%3==2) 
+                <div class="wy22-div3-2-bottom">
+                    <ul>
+                        <li>
+                            <div class="wy22-div3-2-top">
+                                <a href="$!goods_url">
+                                    <img src="$!img" class="img-responsive">
+                                    <h6>$!CommUtil.substring("$!goods.goods_name",20)<span>￥ $!{goods.goods_current_price}</span></h6>
+                                </a>
+                            </div>
+                        </li>
+                    #end
+					#if(${velocityCount}%3==0) 
+                        <li class="wy22-div3-2-bottom-li">
+                            <div class="wy22-div3-2-top">
+                                <a href="$!goods_url">
+                                    <img src="$!img" class="img-responsive">
+                                    <h6>$!CommUtil.substring("$!goods.goods_name",20)<span>￥ $!{goods.goods_current_price}</span></h6>
+                                </a>
+                            </div>
+                        </li>
+                        <div style="clear: both;"></div>
+                    </ul>
+                </div>
+                #end
+				#end
+            </div>
+        </div>
+            #end
+    </div>
+    	#end <!-- 判断下标挪移三位结束 -->
+    #end
+</div>
+
+
+
+
+
+<!--内容2-->
+
+<style>
+    body{padding-top: 60px;}
+    @media (max-width:440px) {body{padding-top: 48px;}}
+    @media (max-width:376px) {body{padding-top: 45px;}}
+    @media (max-width:321px) {body{padding-top: 40px;}}
+</style>
+
+
+<!--底部-->
+<div class="db1"></div>
+<div class="db">
+    <ul>
+        <li>
+            <a href="$!webPath/app/index.htm">
+                <div class="db-div1"><img src="$!webPath/resources/style/app/images/db-li1.png" class="img-responsive"> </div>
+                <h5>首页</h5>
+            </a>
+        </li>
+        <li>
+            <a href="$!webPath/app/luxClassic.htm">
+                <div class="db-div1"><img src="$!webPath/resources/style/app/images/db-li2.png" class="img-responsive"> </div>
+                <h5>分类</h5>
+            </a>
+        </li>
+        <li>
+            <a href="$!webPath/app/luxBrands.htm">
+                <div class="db-div1"><img src="$!webPath/resources/style/app/images/db-li3.png" class="img-responsive"> </div>
+                <h5>品牌</h5>
+            </a>
+        </li>
+        <li>
+            <a href="$!webPath/app/luxGoodsCar.htm">
+                <div class="db-div1"><img src="$!webPath/resources/style/app/images/db-li4.png" class="img-responsive"> </div>
+                <h5>购物车</h5>
+            </a>
+        </li>
+        <li>
+            <a href="$!webPath/app/luxMyInfo.htm">
+                <div class="db-div1"><img src="$!webPath/resources/style/app/images/db-li5.png" class="img-responsive"> </div>
+                <h5>我的</h5>
+            </a>
+        </li>
+        <div style="clear: both;"></div>
+    </ul>
+</div>
+
+
+
+
+<!--js基本样式-->
+<script type="text/javascript" src="$!webPath/resources/js/app/jquery.min.js"></script>
+<script type="text/javascript" src="$!webPath/resources/js/app/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="$!webPath/resources/js/app/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".flexslider").flexslider({
+            slideshowSpeed: 3000, //展示时间间隔ms
+            animationSpeed: 100, //滚动时间ms
+            touch: true //是否支持触屏滑动
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
